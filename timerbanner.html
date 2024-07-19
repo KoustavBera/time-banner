@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assigment:Responsive banner</title>
+  </head>
+  <style>
+    /* ========================= TIMER STYLE========================= */
+    .banner {
+      margin: 20px 35px;
+      align-items: center;
+      justify-content: space-between;
+      display: flex;
+      background: linear-gradient(45deg, #ffc107, #c66109);
+      padding: 14px;
+      border-radius: 60px;
+      text-align: center;
+      width: 94%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .banner h1 {
+      margin: 0;
+      margin-left: 75px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .banner p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .prom1 {
+      font-weight: 600;
+    }
+    .prom3 {
+      font-weight: 600;
+    }
+    .timer {
+      font-size: 21px;
+      font-weight: bold;
+    }
+    .banner img {
+      margin-right: 10px;
+      display: inline;
+      width: 24px;
+      height: 24px;
+    }
+    @media (max-width: 768px) {
+      .banner {
+        flex-direction: column;
+        align-items: center;
+        margin: 10px 20px;
+      }
+      .banner h1 {
+        margin-left: 0;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+      .mid-timer,
+      .promotional {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .timer {
+        font-size: 18px;
+      }
+      .prom1,
+      .prom3 {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .banner {
+        padding: 10px;
+        border-radius: 30px;
+      }
+      .banner h1 {
+        font-size: 12px;
+      }
+      .timer {
+        font-size: 16px;
+      }
+      .prom1,
+      .prom3 {
+        font-size: 14px;
+      }
+    }
+  </style>
+  <body>
+    <div class="count-down-timer">
+      <div class="banner">
+        <h1>
+          <img
+            src="https://img.icons8.com/color/48/000000/alarm-clock.png"
+            alt=""
+          />LIMITED TIME OFFER!
+        </h1>
+
+        <div class="mid-timer">
+          <span class="pre-timer">Ends in: </span>
+          <span class="timer" id="timer">00:00:00</span>
+        </div>
+
+        <div class="promotional">
+          <span class="prom1">GET 10% OFF </span>
+          <span class="prom2">
+            Use Code: <span class="prom3"> EXAMSTART </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <script>
+      function startTimer(duration, display) {
+        var timer = duration,
+          hours,
+          minutes,
+          seconds;
+        setInterval(function () {
+          hours = parseInt(timer / 3600, 10);
+          minutes = parseInt((timer % 3600) / 60, 10);
+          seconds = parseInt(timer % 60, 10);
+
+          hours = hours < 10 ? "0" + hours : hours;
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.textContent = hours + ":" + minutes + ":" + seconds;
+
+          if (--timer < 0) {
+            timer = duration; // Reset the timer
+          }
+        }, 1000);
+      }
+
+      window.onload = function () {
+        var duration = 5400; // 10 minutes in seconds
+        var display = document.querySelector("#timer");
+        startTimer(duration, display);
+      };
+    </script>
+  </body>
+</html>
